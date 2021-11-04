@@ -8,9 +8,35 @@
     <script type="module" src="./bundle.js"></script>
   </head>
   <body>
-    <blog-post
-      postTitle="This is my blog post"
-      postBody="this is my test post body"
-    ></blog-post>
+    <be-post>
+      <h1 slot="title">Building a Blog with Lit</h1>
+      <div slot="body">
+        <p>This is my blog post's body text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi. This is my blog post's body text. my blog post's body. my blog post's body Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi.</p>
+        <p>This is my blog post's body text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi.</p>
+        <be-code>
+          <pre slot="code">
+export class Code extends LitElement {
+  language = "js";
+
+  constructor() {
+    super();
+    const highlightedCode = Prism.highlight(this.code ? this.code : '', Prism.languages.js, this.language);
+  }
+
+  private get code() {
+    return this.shadowRoot?.querySelector("slot")?.firstChild?.textContent;
+  }
+
+  override render() {
+    return html`
+      &lt;slot name="code"&gt;&lt;/slot&gt;
+    `
+  }
+}
+          </pre>
+        </be-code>
+      </div>
+    </be-post>
   </body>
 </html>

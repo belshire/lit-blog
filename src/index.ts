@@ -1,1 +1,1 @@
-export { BlogPost } from "./components/blog-post"
+export * from "./components"
