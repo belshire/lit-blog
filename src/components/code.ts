@@ -1,33 +1,37 @@
-import { LitElement, html } from "lit"
+import { LitElement, html, css, unsafeCSS } from "lit"
 import { customElement, property } from "lit/decorators.js"
+import { unsafeHTML } from "lit/directives/unsafe-html.js"
 import Prism from "prismjs";
+
+//@ts-ignore
+import prismTheme from "../../node_modules/prismjs/themes/prism.css" assert { type: 'css'};
 
 @customElement("be-code")
 export class Code extends LitElement {
+  static override styles = css`${unsafeCSS(prismTheme)}`;
   @property()
   language = "js";
+
+  @property()
+  code = "";
 
   private highlightedCode = "";
 
   constructor() {
     super();
+    console.log(prismTheme);
   }
 
-  override firstUpdated() {
+  override connectedCallback() {
+    super.connectedCallback();
     if (this.code) {
-      console.log('code content: ', this.code?.textContent);
-      this.highlightedCode = Prism.highlight(this.code.textContent!, Prism.languages.js, this.language);
-      console.log(this.highlightedCode);
+      this.highlightedCode = Prism.highlight(this.code, Prism.languages.js, this.language);
     }
-  }
-
-  private get code() {
-    return this.shadowRoot?.querySelector('slot')?.assignedNodes({flatten: true})[0];
   }
 
   override render() {
     return html`
-      <slot name="code"></slot>
+      <pre><code class="language-${this.language}">${unsafeHTML(this.highlightedCode)}</pre>
     `
   }
 }
