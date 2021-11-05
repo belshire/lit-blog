@@ -14,27 +14,24 @@
         <p>This is my blog post's body text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi. This is my blog post's body text. my blog post's body. my blog post's body Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi.</p>
         <p>This is my blog post's body text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsa quisquam porro quae ratione. Odit molestias quia neque commodi debitis odio quisquam ut? Eius debitis dolores aperiam asperiores consequatur quasi.</p>
-        <be-code>
-          <pre slot="code">
-export class Code extends LitElement {
-  language = "js";
+        <be-code code="export class Code extends LitElement {
+  language = &quot;js&quot;;
 
   constructor() {
     super();
-    const highlightedCode = Prism.highlight(this.code ? this.code : '', Prism.languages.js, this.language);
+    const highlightedCode = Prism.highlight(this.code ? this.code : &apos;&apos;, Prism.languages.js, this.language);
   }
 
   private get code() {
-    return this.shadowRoot?.querySelector("slot")?.firstChild?.textContent;
+    return this.shadowRoot?.querySelector(&quot;slot&quot;)?.firstChild?.textContent;
   }
 
   override render() {
     return html`
-      &lt;slot name="code"&gt;&lt;/slot&gt;
+      &lt;slot name=&quot;code&quot;&gt;&lt;/slot&gt;
     `
   }
-}
-          </pre>
+}">
         </be-code>
       </div>
     </be-post>
